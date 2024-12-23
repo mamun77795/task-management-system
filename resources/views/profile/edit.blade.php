@@ -1,4 +1,4 @@
-@extends('layout.erp.app')
+@extends('layouts.erp.app')
 
 @section('style')
 <link rel="preconnect" href="https://fonts.bunny.net">
