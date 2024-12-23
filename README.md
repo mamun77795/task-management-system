@@ -73,6 +73,9 @@ Use the following credentials to log in:
 
 ## API Documentation
 1. Import the API collection into Postman from API-Collection folder.
+```bash
+https://github.com/mamun77795/task-management-system/tree/main/API_Collection
+```
 2. You will find all API endpoints available for testing.
 
 ## Requirement
