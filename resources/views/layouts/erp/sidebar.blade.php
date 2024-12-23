@@ -33,18 +33,17 @@
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i
                         data-feather="monitor"></i><span>Tasks</span></a>
                 <ul class="dropdown-menu">
-                    <li class=""><a class="nav-link" href="">Create Task</a></li>
-                    <li><a class="nav-link" href="">Manage Task</a></li>
+                    <li class=""><a class="nav-link" href="{{route('tasks.create')}}">Create Task</a></li>
+                    <li><a class="nav-link" href="{{route('tasks.index')}}">Manage Task</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="menu-toggle nav-link has-dropdown">
                     <i data-feather="users"></i>
-                    <span>Team Member</span>
+                    <span>Users</span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="">Create Member</a></li>
-                    <li><a class="nav-link" href="">Manage Member</a></li>
+                    <li><a class="nav-link" href="{{route('users')}}">All Users</a></li>
                 </ul>
             </li>
         </ul>

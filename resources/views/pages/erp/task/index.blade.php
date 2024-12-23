@@ -1,4 +1,4 @@
-@extends('layout.erp.app')
+@extends('layouts.erp.app')
 
 @section('page')
     <div class="main-content">
@@ -9,19 +9,11 @@
                         <div class="card-header">
                             <h4>Task List</h4>
                             <div class="card-header-form">
-                                {{-- <form>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control search-control" placeholder="Search">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                </form> --}}
                                 <form method="GET" action="{{ route('filter') }}">
                                     <select class="form-control" name="status" onchange="this.form.submit()">
                                         <option value="all">Task Filtering & Sorting</option>
                                         <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                                        <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>In Progress</option>
+                                        <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>In Progress</option>
                                         <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
                                     </select>
                                 </form>
@@ -30,34 +22,34 @@
                         <div class="card-body">
                             <div class="table-responsive" id="proTeamScroll">
                                 <table class="table table-striped">
-                                    <thead>
+                                    <thead >
                                         <tr>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Due Date</th>                                         
-                                            <th>Action</th>
+                                            <th style="background-color: white !important; color:black !important;">Title</th>
+                                            <th style="background-color: white !important; color:black !important;">Description</th>
+                                            <th style="background-color: white !important; color:black !important;">Status</th>
+                                            <th style="background-color: white !important; color:black !important;">Due Date</th>                                         
+                                            <th style="background-color: white !important; color:black !important;">Action</th>
                                         </tr>
                                     </thead>
                                     @foreach ($tasks as $task)
                                         <tr>
                                             <td>
-                                                <h6 class="mb-0 font-13">{{ $task->title }}</h6>
+                                                <p class="mb-0 font-13">{{ $task->title }}</p>
                                             </td>
                                             <td class="table-img">
-                                                <h6 class="mb-0 font-13">{{ $task->short_description }}</h6>
+                                                {!! $task->description !!}
                                             </td>
                                             <td>
-                                                <h6 class="mb-0 font-13">{{ $task->status }}</h6>
+                                                <p class="mb-0 font-13">{{ $task->status }}</p>
                                             </td>
                                             <td>
-                                                <h6 class="mb-0 font-13">{{ $task->due_date }}</h6>    
+                                                <p class="mb-0 font-13">{{ $task->due_date }}</p>    
                                             </td>                                            
                                             <td>
                                                 <span style="display: flex; padding-top:5px;">
                                                     <a href="{{ route('tasks.edit', $task->id) }}"
                                                         data-bs-toggle="tooltip" title=""
-                                                        data-original-title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                        data-original-title="Edit" style="margin-right:5px; "><i class="fas fa-pencil-alt"></i></a>
                                                     <form action="{{ route('tasks.destroy', $task->id) }}"
                                                         method="POST">
                                                         @csrf

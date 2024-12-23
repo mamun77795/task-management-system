@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -21,7 +24,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.erp.task.create');
     }
 
     /**
@@ -29,7 +32,33 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'due_date' => 'required|date|after:today',
+            'status'=>'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return $validator->errors();
+        }
+
+        $data  = array();
+        $data['title'] = $request->input('title');
+        $data['description'] = $request->input('description');
+        $data['status'] = $request->input('status');
+        $data['due_date'] = $request->input('due_date');
+        $data['user_id'] = Auth::user()->id;
+        $data['created_at'] = Carbon::now();
+
+        $task = Task::create($data);
+        if ($task) {
+            return redirect('tasks')->with(['msg' => "Task has been successfully added"]);
+        } else {
+            return redirect('tasks')->with(['msg' => "Something went wrong"]);
+        }
     }
 
     /**
@@ -45,7 +74,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('pages.erp.task.edit', compact('task'));
     }
 
     /**
@@ -53,7 +82,33 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $rules = [
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'due_date' => 'required|date|after:today',
+            'status'=>'required',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return $validator->errors();
+        }
+
+        $data  = array();
+        $data['title'] = $request->input('title');
+        $data['description'] = $request->input('description');
+        $data['status'] = $request->input('status');
+        $data['due_date'] = $request->input('due_date');
+        $data['user_id'] = Auth::user()->id;
+        $data['created_at'] = Carbon::now();
+
+        $task = Task::where('id', $task->id)->update($data);
+        if ($task) {
+            return redirect('tasks')->with(['msg' => "Task has been updated successfully"]);
+        } else {
+            return redirect('tasks')->with(['msg' => "Something went wrong"]);
+        }
     }
 
     /**
@@ -61,7 +116,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect('tasks')->with(['msg' => "Something went wrong"]);
     }
 
     public function filtering(Request $request)
@@ -69,7 +125,7 @@ class TaskController extends Controller
         $query = Task::query();
 
         if ($request->has('status')) {
-            if($request->status == 'all'){
+            if ($request->status == 'all') {
                 $tasks = $query->orderBy('due_date', 'asc')->get();
                 return view('pages.erp.task.index', compact('tasks'));
             }

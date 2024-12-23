@@ -1,4 +1,4 @@
-@extends('layout.erp.app')
+@extends('layouts.erp.app')
 
 @section('page')
     <div class="main-content">
@@ -14,8 +14,8 @@
                         <div class="card-statistic-3">
                             <div class="card-icon card-icon-large"><i class="fa fa-award"></i></div>
                             <div class="card-content">
-                                <h4 class="card-title">New Orders</h4>
-                                <span>524</span>
+                                <h4 class="card-title">Total Task</h4>
+                                <span>{{ $totalTask? $totalTask : 0 }}</span>
                                 <div class="progress mt-1 mb-1" data-height="8">
                                     <div class="progress-bar l-bg-purple" role="progressbar" data-width="25%"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -33,8 +33,8 @@
                         <div class="card-statistic-3">
                             <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
                             <div class="card-content">
-                                <h4 class="card-title">New Booking</h4>
-                                <span>1,258</span>
+                                <h4 class="card-title">Pending Task</h4>
+                                <span>{{ $pendingTask? $pendingTask : 0 }}</span>
                                 <div class="progress mt-1 mb-1" data-height="8">
                                     <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -52,8 +52,8 @@
                         <div class="card-statistic-3">
                             <div class="card-icon card-icon-large"><i class="fa fa-globe"></i></div>
                             <div class="card-content">
-                                <h4 class="card-title">Inquiry</h4>
-                                <span>10,225</span>
+                                <h4 class="card-title">In Progress</h4>
+                                <span>{{ $progressTask? $progressTask : 0 }}</span>
                                 <div class="progress mt-1 mb-1" data-height="8">
                                     <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -71,8 +71,8 @@
                         <div class="card-statistic-3">
                             <div class="card-icon card-icon-large"><i class="fa fa-money-bill-alt"></i></div>
                             <div class="card-content">
-                                <h4 class="card-title">Earning</h4>
-                                <span>$2,658</span>
+                                <h4 class="card-title">Completed Task</h4>
+                                <span>{{ $completeTask? $completeTask : 0 }}</span>
                                 <div class="progress mt-1 mb-1" data-height="8">
                                     <div class="progress-bar l-bg-green" role="progressbar" data-width="25%"
                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>

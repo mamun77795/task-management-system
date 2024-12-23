@@ -7,6 +7,7 @@ use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -37,6 +38,21 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
+        $rules = [
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => 'required',
+            'due_date' => 'required|date|after:today',
+            'user_id' => 'required|integer|exists:users,id',
+        ];
+    
+        $validator = Validator::make($request->all(), $rules);
+    
+        if ($validator->fails()) {
+            return $validator->errors();
+        }
+
         $data  = array();
         $data['title'] = $request->input('title');
         $data['description'] = $request->input('description');
@@ -81,8 +97,22 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-       
         if($request->isMethod('PUT')){
+
+            $rules = [
+                'title' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'status' => 'required',
+                'due_date' => 'required|date|after:today',
+                'user_id' => 'required|integer|exists:users,id',
+            ];
+        
+            $validator = Validator::make($request->all(), $rules);
+        
+            if ($validator->fails()) {
+                return $validator->errors();
+            }
+
             $data  = array();
             $data['title'] = $request->input('title');
             $data['description'] = $request->input('description');
@@ -98,7 +128,6 @@ class TaskController extends Controller
             $find = Task::find($id);
             $task = $find->update($request->all());
         }
-        
 
         if ($task) {
             return Response::json(['message' => 'Task data has been updated successfully'], 200);
