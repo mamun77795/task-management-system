@@ -20,16 +20,16 @@ class TaskServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $totalTask = Task::all()->count();
-        view()->share('totalTask', $totalTask);
+        // $totalTask = Task::all()->count();
+        // view()->share('totalTask', $totalTask);
 
-        $pendingTask = Task::where('status', 'pending')->count();
-        view()->share('pendingTask', $pendingTask);
+        // $pendingTask = Task::where('status', 'pending')->count();
+        // view()->share('pendingTask', $pendingTask);
 
-        $progressTask = Task::where('status', 'in_progress')->count();
-        view()->share('progressTask', $progressTask);
+        // $progressTask = Task::where('status', 'in_progress')->count();
+        // view()->share('progressTask', $progressTask);
 
-        $completeTask = Task::where('status', 'completed')->count();
-        view()->share('completeTask', $completeTask);
+        // $completeTask = Task::where('status', 'completed')->count();
+        // view()->share('completeTask', $completeTask);
     }
 }

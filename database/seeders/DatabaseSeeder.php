@@ -13,11 +13,45 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        DB::table('users')->insert([
+            [
+                'name' => 'Admin User',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('password123'), 
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+
+        DB::table('tasks')->insert([
+            [
+                'title' => 'Demo Task',
+                'description' => 'This is Demo Task Description',
+                'status' => 'pending',
+                'due_date' => '2025-01-01', 
+                'user_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Second Demo Task',
+                'description' => 'This is Second Demo Task Description',
+                'status' => 'in_progress',
+                'due_date' => '2025-01-01', 
+                'user_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Third Demo Task',
+                'description' => 'This is Third Demo Task Description',
+                'status' => 'completed',
+                'due_date' => '2025-01-01', 
+                'user_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
