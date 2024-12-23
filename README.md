@@ -76,7 +76,7 @@ Use the following credentials to log in:
 2. You will find all API endpoints available for testing.
 
 ## Requirement
-PHP version 8.2
+PHP version 8.2 &
 Composer version 2.6.5
 
 Enjoy working with the Task Management System!
