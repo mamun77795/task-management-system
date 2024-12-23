@@ -79,8 +79,8 @@ https://github.com/mamun77795/task-management-system/tree/main/API_Collection
 2. You will find all API endpoints available for testing.
 
 ## Requirement
-PHP version 8.2 &
-Composer version 2.6.5
+PHP version 8.2 or above &
+Composer version 2.6.5 or above
 
 Enjoy working with the Task Management System!
 ```
