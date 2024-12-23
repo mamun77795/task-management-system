@@ -74,7 +74,6 @@ Use the following credentials to log in:
 ## API Documentation
 1. Import the API collection into Postman from API-Collection folder.
 2. You will find all API endpoints available for testing.
-```
 
 ## Requirement
 PHP version 8.2
